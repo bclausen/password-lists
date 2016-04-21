@@ -1,0 +1,25 @@
+<% title="pwlist" %>
+<!doctype html>
+<html lang="en">
+<head>
+  <title><%= title %></title>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <h1><%= title %></h1>
+    <nav>
+        <ul class="nav">
+          <li><a href="/" title="Home">Home</a></li>
+          <li><a href="/import" title="Import">Import</a></li>
+          <li><a href="/export" title="Export">Export</a></li>
+          <li><a href="/print" title="Druck">Druck</a></li>
+        </ul>   
+    </nav>
+  </header>
+  <section>
+    <%= yield %>
+  </section>
+</body>
+</html>
