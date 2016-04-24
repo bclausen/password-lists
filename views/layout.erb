@@ -1,4 +1,4 @@
-<% title="pwlist" %>
+<% title="pwList" %>
 <!doctype html>
 <html lang="en">
 <head>
@@ -7,17 +7,21 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <header>
-    <h1><%= title %></h1>
+  <div id="topbar">
+    <h1>pwList</h1>  
     <nav>
-        <ul class="nav">
-          <li><a href="/" title="Home">Home</a></li>
-          <li><a href="/import" title="Import">Import</a></li>
-          <li><a href="/export" title="Export">Export</a></li>
-          <li><a href="/print" title="Druck">Druck</a></li>
-        </ul>   
-    </nav>
-  </header>
+          <ul class="nav">
+            <li><a href="/" title="Home">Home</a></li>
+            <li><a href="/list" title="Import">Liste</a></li>
+            <li><a href="/import" title="Import">Import</a></li>
+            <li><a href="/export" title="Export">Export</a></li>
+            <li><a href="/data" title="Daten">Daten</a></li>
+            <li><a href="/print" title="Druck">Druck</a></li>
+          </ul>   
+      </nav>
+
+  </div>
+
   <section>
     <%= yield %>
   </section>

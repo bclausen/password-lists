@@ -1,0 +1,15 @@
+<h3> Daten </h3>
+
+<%   %>
+<% #Auflistung der Klassen  %>
+<h3>Klassen:</h3>
+<table>
+	<th>Klasse</th> <th>Jahrgang</th><th>Nachfolger</th>
+	<% @schoolclasses.each do |schoolclass| %>
+		<tr>
+		    <td><%= schoolclass.name  %></td>
+		    <td><%= Grade.first(:id.like =>schoolclass.grade_id).name  %></td>
+		    <td><%= schoolclass.successor  %></td>
+		</tr>
+	<% end %>
+</table>

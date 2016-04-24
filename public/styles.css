@@ -1,19 +1,61 @@
 h1 {
-  /*color: #903;*/
-  font: 32px/1 Helvetica, Arial, sans-serif;
+  letter-spacing: -0.015em;
+	line-height: 0px;
+	/*line-height: 2.0625;*/
+	font-weight: 100;
+	font-size:38px;
+	text-rendering: optimizelegibility;
+	padding-left:20px
 }
-header h1 {
+#h1_top {
   font-size: 40px;
-  line-height: 80px;
-  background: transparent url(/images/logo.png) 0 0 no-repeat;
-  padding-left: 84px;
+  /*line-height: 80px;*/
+  /*background: transparent url(/images/logo.png) 0 0 no-repeat;*/
+  /*padding-left: 84px;*/
 }
+
+h2 {
+	letter-spacing: -0.015em;
+	line-height: 0px;
+	/*line-height: 2.0625;*/
+	font-weight: 100;
+	font-size:38px;
+	text-rendering: optimizelegibility;
+	padding-left:0px
+}
+
+h3 {
+	padding-left: 20px;
+	letter-spacing: -0.015em;
+	line-height: 1.0625;
+	font-weight: 200;
+	font-size:20px;
+	text-rendering: optimizelegibility;
+}
+
 p{
-font: 13px/1.4 Helvetica, Arial, sans-serif;
+	/*font: 13px/1.4 Helvetica, Arial, sans-serif;*/
 }
 
 body {
-	font-family: sans-serif;
+	background-color: #fff;
+	font-style: normal;
+	/*font-family: "Myriad Set Pro","Lucida Grande","Helvetica Neue","Helvetica","Arial","Verdana","sans-serif";*/
+	font-family: sans-serif ;
+	font-size: 14px;
+	margin: 0; padding: 0;
+	
+	text-align: center;
+}
+
+section {
+	padding-left: 20px;
+	letter-spacing: -0.015em;
+	line-height: 2.0625;
+	font-weight: 200;
+	font-size:16px;
+	text-rendering: optimizelegibility;
+	text-align: left;
 }
 
 html, body, ul.nav {
@@ -23,12 +65,25 @@ html, body, ul.nav {
 }
 
 th {
-	text-align: left;
+	text-align: center;
+	/*padding-left: 20px;*/
+	letter-spacing: -0.015em;
+	line-height: 1.0625;
+	font-weight: bold;
+	font-size:16px;
+	text-rendering: optimizelegibility;
+}
+
+td {
+	text-align: center;
 }
 
 ul.nav {
-	width: 100%;
+	width: 500px;
 	font-weight: bold;
+	position: absolute;
+	right: 0px;
+	top: 40px;
 }
 
 ul.nav li {
@@ -37,13 +92,12 @@ ul.nav li {
 }
 
 ul.nav a, ul.nav a:visited {
-	color: black;
+	color: #fff;
 	text-decoration: none;
 }
 
-li.user {
-	position: absolute;
-	right: 0px;
+ul.nav a:hover {
+	color: #BDBDBD;
 }
 
 .tablediv { 
@@ -51,14 +105,14 @@ li.user {
 		  margin: 1cm;
 }
 
-.byname {
-		 background-color:#99FF99;
-		}
-
-.anonym {
-		 background-color:#99FF99;
-		}
-
-.urgent {
-		 background-color:#FFAA00;
+#topbar		{
+	background: rgba(0,0,0,0.6);
+	border-bottom: 1px solid #666;
+	display: block;
+	font-size: 16px;
+	padding: 10px 0;
+	text-align: left;
+	text-decoration: none;
+	color: #fff;
 }
+
