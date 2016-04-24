@@ -29,19 +29,37 @@ get '/import' do
 end
 
 post '/import' do
-	params['csvupload'].to_s
-	# if params['csvupload'] != nil							# Wenn wirklich eine Datei ausgewählt wurde,,
- #  		File.open('public/csv/' + params['csvupload'][:filename], "w") do |f|	# wird diese geöffnet
- #    			f.write(params['csvupload'][:tempfile].read)			# und in den Ordner "/public/csv" geschrieben.
- #  		end
-	# 	$filename=params['csvupload'][:filename].to_s				# Globale Variable zum Benutzen in "import"
-	# 	$table=params['tab'].to_s						# Globale Variable zum Benutzen in "import"
- #  		redirect to("/import")							# Weiterleitung zum Importskript, welches die gewünschte CSV in die Datenbank einträgt
-	# end
-	# if params['csvupload'] == nil							# Wenn keine Datein ausgewählt wurde,
-	# 	redirect to ("/home")							# wird man auf die Startseite zurückgeleitet.
-	# end
-  #redirect to ("/import_selection")
+	if params['csvupload'] != nil
+		#Die im Formular ausgwählte CSV-Datei wird auf den Server geladen
+		#in den Ordner uploads
+		File.open('uploads/' + params['csvupload'][:filename], "w") do |f|
+		f.write(params['csvupload'][:tempfile].read) end
+		#return "The file was successfully uploaded!"
+	else
+		redirect to("/import")
+	end
+	#Inhalt der CSV-Datei auslesen und in einem Array ablegen
+	@csv= CSV.read('uploads/' + params['csvupload'][:filename], col_sep: ';',headers: true, skip_blanks: true)	# CSV-Datei -> Array mit Headern und Semikolon als separierendes Element
+	@csv_array= Array.new
+	csv_row_names = Array.new
+	@csv[0].each do |cell|
+		if cell[0] != nil then
+			csv_row_names.push(cell[0])
+		end
+	end
+	@csv_array.push(csv_row_names)
+	@csv.each do |row|
+		csv_row_data = Array.new
+		row.each do |cell|
+			if cell[1] != nil then
+				csv_row_data.push(cell[1])
+			end
+		end
+		@csv_array.push(csv_row_data)
+	end
+
+	erb :import_selection
+  	#redirect to ("/import_selection")
 end
 
 get '/import_selection' do

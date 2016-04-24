@@ -8,9 +8,11 @@ require '../classes/students'
 require '../classes/users'
 require '../classes/groups'
 require '../classes/grades'
+require '../classes/temps'
 
 Schoolclass.auto_migrate!
 Student.auto_migrate!
 User.auto_migrate!
 Group.auto_migrate!
 Grade.auto_migrate!
+Temp.auto_migrate!
