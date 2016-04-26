@@ -1,7 +1,24 @@
 <h2>Import Auswahl </h2>
-<p>Importiert werden Daten aus einer CSV-Datei. Aus der ersten Zeile werden die Spaltennamen ausgelesen.
-Anschließend kann entschieden werden, welche Spalten importiert werden.</p>
+<p>Folgende Daten werden importiert.</p>
 
 <p></p>
 
-<%= @csv_array.to_s %>
+<% classname_index = @csv_array[0].index("classname") %>
+<% firstname_index = @csv_array[0].index("firstname") %>
+<% lastname_index = @csv_array[0].index("lastname") %>
+<% #Wenn es keine Passwortspalte gibt, wird die Variable password_index auf nil gesetzt %>
+<% password_index = @csv_array[0].index("password") %>
+
+<table>
+	<tr><th>Klasse</th><th>Vorname</th><th>Nachname</th><th>Passwort</th></tr>
+	<% @csv_array.each do |row| %>
+		<% if @csv_array.index(row) != 0 then %> <% # Erste Zeile wird nicht importiert %>
+			<tr>
+				<td><%= row[classname_index] %></td>
+				<td><%= row[firstname_index] %></td>
+				<td><%= row[lastname_index] %></td>
+				<td><%= row[password_index] %></td>
+			</tr>
+		<% end %>
+	<% end %>
+</table>
