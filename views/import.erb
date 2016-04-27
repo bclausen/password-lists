@@ -3,7 +3,8 @@
 die Namen <b>"classname"</b>, <b>"firstname"</b> und <b>"lastname"</b> haben. Optional kann noch die Spalte <b>"password"</b>
 vorhanden sein. Die Passwörter können aber auch in dieser Anwendung erzeugt werden.</p>
 <p>Beim Import der Daten werden folgende Umwandlungen vorgenommen: ä in ae, ö in oe,
-ü in ue und ß in ss.</p>
+ü in ue und ß in ss. Dies ist notwendig, da zum Beispiel in OS X keine Umlaute im Benutzernamen
+vorkommen dürfen.</p>
 
 <form action="/import" enctype="multipart/form-data" method="POST">	
 	<input type="file" name="csvupload" accept=".csv">		

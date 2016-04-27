@@ -52,6 +52,29 @@ post '/import' do
 		csv_row_data = Array.new
 		row.each do |cell|
 			if cell[1] != nil then
+				# Im folgenden werden die Umlaute und ß ersetzt mit
+				# Hilfe von regulären Ausdrücken
+				if (cell[1] =~ /Ä/) != nil then
+					cell[1] = $`+"AE" + $'
+				end
+				if (cell[1] =~ /ä/) != nil then
+					cell[1] = $`+"ae" + $'
+				end
+				if (cell[1] =~ /Ö/) != nil then
+					cell[1] = $`+"OE" + $'
+				end
+				if (cell[1] =~ /ö/) != nil then
+					cell[1] = $`+"oe" + $'
+				end
+				if (cell[1] =~ /Ü/) != nil then
+					cell[1] = $`+"UE" + $'
+				end
+				if (cell[1] =~ /ü/) != nil then
+					cell[1] = $`+"ue" + $'
+				end
+				if (cell[1] =~ /ß/) != nil then
+					cell[1] = $`+"ss" + $'
+				end
 				csv_row_data.push(cell[1])
 			end
 		end
