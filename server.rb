@@ -9,6 +9,8 @@ require './classes/grades'
 require 'dm-core'			#Datamapper
 require 'dm-migrations'
 require 'csv' 	#Verarbeitung von CSV-Dateien
+require './helpers/generate_password' #Funktion zum generieren von Passwörtern
+
 
 DataMapper.setup(:default, "sqlite3://#{Dir.pwd}/db/pwlist.db")
 DataMapper.finalize
@@ -29,6 +31,33 @@ get '/import' do
 end
 
 post '/import' do
+	#params.to_s
+	#Ergebnis von params
+	#{"generate_password"=>"on", "length"=>"4", "caps"=>"on", "numbers"=>"on", "special_characters"=>"on", "special_characters_string"=>"!$%&?#*", "csvupload"=>{:filename=>"test2.csv", :type=>"text/csv", :name=>"csvupload", :tempfile=>#, :head=>"Content-Disposition: form-data; name=\"csvupload\"; filename=\"test2.csv\"\r\nContent-Type: text/csv\r\n"}}
+
+	if params['generate_password'] == "on" then
+		generate_pw = true
+		length = params['length'].to_i
+		if params['caps'] == "on" then
+			caps = true
+		else
+			caps = false
+		end
+		if params['numbers'] == "on" then
+			numbers = true
+		else
+			numbers = false
+		end
+		if params['special_characters'] == "on" then
+			special_characters_string = params['special_characters_string']
+		else
+			special_characters_string = ""
+		end
+		special_characters_string
+	else
+		generate_pw = false
+	end
+
 	if params['csvupload'] != nil
 		#Die im Formular ausgwählte CSV-Datei wird auf den Server geladen
 		#in den Ordner uploads
@@ -51,6 +80,9 @@ post '/import' do
 	@csv.each do |row|
 		csv_row_data = Array.new
 		row.each do |cell|
+			if generate_pw && cell[0] == "password" then
+				cell[1] = generate_passwd(length, caps, numbers, special_characters_string)
+			end
 			if cell[1] != nil then
 				# Im folgenden werden die Umlaute und ß ersetzt mit
 				# Hilfe von regulären Ausdrücken

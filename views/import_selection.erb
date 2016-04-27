@@ -1,5 +1,5 @@
 <h2>Import Auswahl </h2>
-<p>Folgende Daten werden importiert. Die Daten können noch verändert werden.</p>
+<p>Folgende Daten werden importiert. Die Daten können in den Formularfeldern noch verändert werden.</p>
 
 <p></p>
 
@@ -9,16 +9,26 @@
 <% #Wenn es keine Passwortspalte gibt, wird die Variable password_index auf nil gesetzt %>
 <% password_index = @csv_array[0].index("password") %>
 
+<form id="import_list" action ='/import_selection' method ="post">
+
 <table>
 	<tr><th>Klasse</th><th>Vorname</th><th>Nachname</th><th>Passwort</th></tr>
 	<% @csv_array.each do |row| %>
 		<% if @csv_array.index(row) != 0 then %> <% # Erste Zeile wird nicht importiert %>
 			<tr>
-				<td><%= row[classname_index] %></td>
-				<td><%= row[firstname_index] %></td>
-				<td><%= row[lastname_index] %></td>
-				<td><%= row[password_index] %></td>
+				<% cell_name = "class" + @csv_array.index(row).to_s %>
+				<td><input form="import_list" type="text" size = "6" name=<%= cell_name %> value='<%= row[classname_index] %>' ></td>
+				<% cell_name = "firstname" + @csv_array.index(row).to_s %>
+				<td><input form="import_list" type="text" size = "20" name=<%= cell_name %> value='<%= row[firstname_index] %>' ></td>
+				<% cell_name = "lastname" + @csv_array.index(row).to_s %>
+				<td><input form="import_list" type="text" size = "20" name=<%= cell_name %> value='<%= row[lastname_index] %>' ></td>
+				<% cell_name = "password" + @csv_array.index(row).to_s %>
+				<td><input form="import_list" type="text" size = "20" name=<%= cell_name %> value='<%= row[password_index] %>' ></td>
 			</tr>
 		<% end %>
 	<% end %>
 </table>
+
+<input type="submit" value="Daten importieren">
+</form>
+

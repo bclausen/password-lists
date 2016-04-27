@@ -6,7 +6,18 @@ vorhanden sein. Die Passwörter können aber auch in dieser Anwendung erzeugt we
 ü in ue und ß in ss. Dies ist notwendig, da zum Beispiel in OS X keine Umlaute im Benutzernamen
 vorkommen dürfen.</p>
 
+<p>Geben Sie an, ob (neue) Passwörter erzeugt werden sollen. In der CSV-Datei vorhandene Passwörter
+werden überschrieben. Wenn keine Spalte "password" existiert, wird diese beim Import angelegt.</p>
+
 <form action="/import" enctype="multipart/form-data" method="POST">	
+<p><b>Passwörter erzeugen:</b> <input type="checkbox" name="generate_password"></p>
+<p>Kleinbuchstaben werden immer verwendet</p>
+<p>Passwortlänge: <input type="number" name="length" min="4" step="1" value="4"></p>
+<p>Verwende Großbuchstaben: <input type="checkbox" name="caps"></p>
+<p>Verwende Zahlen: <input type="checkbox" name="numbers"></p>
+<p>Verwende Sonderzeichen: <input type="checkbox" name="special_characters"></p>
+<p>Sonderzeichen: <input type="text" name="special_characters_string" value="!$%&?#*" ></p>
+
 	<input type="file" name="csvupload" accept=".csv">		
 	<p></p>
 	
