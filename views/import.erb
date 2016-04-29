@@ -10,14 +10,17 @@ vorkommen dürfen.</p>
 werden überschrieben. Wenn keine Spalte "password" existiert, wird diese beim Import angelegt.</p>
 
 <form action="/import" enctype="multipart/form-data" method="POST">	
-<p><b>Passwörter erzeugen:</b> <input type="checkbox" name="generate_password"></p>
-<p>Kleinbuchstaben werden immer verwendet</p>
-<p>Passwortlänge: <input type="number" name="length" min="4" step="1" value="4"></p>
-<p>Verwende Großbuchstaben: <input type="checkbox" name="caps"></p>
-<p>Verwende Zahlen: <input type="checkbox" name="numbers"></p>
-<p>Verwende Sonderzeichen: <input type="checkbox" name="special_characters"></p>
-<p>Sonderzeichen: <input type="text" name="special_characters_string" value="!$%&?#*" ></p>
-
+<div id="pw_generate">
+	<p><b>Passwörter erzeugen:</b> <input type="checkbox" name="generate_password"></p>
+	<div id="pw_generate_settings">
+		<p>Kleinbuchstaben werden immer verwendet</p>
+		<p>Passwortlänge: <input id="pwlength_input" type="number" name="length" min="4" step="1" value="4"></p>
+		<p>Verwende Großbuchstaben: <input type="checkbox" name="caps"></p>
+		<p>Verwende Zahlen: <input type="checkbox" name="numbers"></p>
+		<p>Verwende Sonderzeichen: <input type="checkbox" name="special_characters">&nbsp;&nbsp;&nbsp;
+		Sonderzeichen: <input id="special_characters_input" type="text" size="10" name="special_characters_string" value="!$%&?#*" ></p>
+	</div>
+</div>
 	<input type="file" name="csvupload" accept=".csv">		
 	<p></p>
 	

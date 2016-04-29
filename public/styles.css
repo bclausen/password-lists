@@ -118,6 +118,34 @@ ul.nav a:hover {
 		  margin: 1cm;
 }
 
+#pw_generate {
+	position: relative;
+	left: 100px;
+}
+#pw_generate_settings {
+	position: relative;
+	left: 100px;
+	font-style: normal;
+	font-family: sans-serif ;
+
+	letter-spacing: -0.015em;
+	line-height: 1.5625;
+	font-weight: 200;
+	font-size:16px;
+	text-rendering: optimizelegibility;
+}
+
+#pwlength_input {
+	/**/
+	width: 60px;
+	line-height: 1.5625;
+	/**/
+}
+
+special_characters_input {
+	line-height: 1.0625;
+}
+
 #topbar		{
 	background: rgba(0,0,0,0.6);
 	border-bottom: 1px solid #666;
