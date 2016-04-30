@@ -121,6 +121,30 @@ get '/import_selection' do
   erb :import_selection
 end
 
+post '/import_selection' do
+  i = 1 #Wird verwendet, um class1, firstname1 usw. zu bilden
+  class_key = "class" + i.to_s
+  firstname_key = "firstname" + i.to_s
+  lastname_key = "lastname" + i.to_s
+  password_key = "password" + i.to_s
+
+  while params[class_key] != nil && params[firstname_key] != nil && params[lastname_key] != nil
+  	classname = params[class_key]
+  	class_id = Schoolclass.first(:name => params[class_key]).id
+  	firstname = params[firstname_key]
+  	lastname = params[lastname_key]
+  	password = params[password_key]
+  	Student.create(:lastname => params[lastname_key], :firstname => params[firstname_key], :password => params[password_key], :schoolclass_id => class_id )
+  	i += 1
+  	class_key = "class" + i.to_s
+	firstname_key = "firstname" + i.to_s
+	lastname_key = "lastname" + i.to_s
+  end
+  i.to_s
+  #erb :import_selection
+end
+
+
 # Export-Seite
 get '/export' do
   erb :export
