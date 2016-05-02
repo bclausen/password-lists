@@ -20,8 +20,9 @@ get "/" do
 	erb:home
 end
 
-# Liste der Passwörter
+# Liste der Schüler mit Klasse, Passwörter, Nutzugsbedingungen
 get "/list" do
+	@students = Student.all
 	erb:list
 end
 

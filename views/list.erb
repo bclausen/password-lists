@@ -1,1 +1,14 @@
 <p> Liste </p>
+<table>
+	<tr><th>Klasse</th><th>Vorname</th><th>Nachname</th><th>Passwort</th><th>Nutzungsbedingungen</th></tr>
+	<% @students.each do |student| %>
+		<% schoolclass_name = Schoolclass.first(:id => student.schoolclass_id).name %>
+		<tr>
+			<td><%= schoolclass_name %></td>
+			<td><%= student.firstname %></td>
+			<td><%= student.lastname %></td>
+			<td><%= student.password %></td>
+			<td><%= student.wifi_accepting %></td>
+		</tr>
+	<% end %>
+</table>
