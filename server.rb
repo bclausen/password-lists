@@ -9,8 +9,8 @@ require './classes/grades'
 require 'dm-core'			#Datamapper
 require 'dm-migrations'
 require 'csv' 	#Verarbeitung von CSV-Dateien
-require './helpers/generate_password' #Funktion zum generieren von Passwörtern
-
+require './helpers/generate_password' #Funktion zum Generieren von Passwörtern
+require './helpers/get_students' #Funktion zum Ausgeben von Schülern
 
 DataMapper.setup(:default, "sqlite3://#{Dir.pwd}/db/pwlist.db")
 DataMapper.finalize
@@ -22,7 +22,38 @@ end
 
 # Liste der Schüler mit Klasse, Passwörter, Nutzugsbedingungen
 get "/list" do
-	@students = Student.all
+	##### Neu 7.5.
+	@grades_data_array = Array.new
+	grades = Grade.all
+	#Es fehlt noch eine Sortierung der Jahrgänge, dafür wird aber eine zusätzliche Integer-Spalte benötigt
+	#grades = Grade.all(:order => [:position.asc])
+	grades.each do |grade|
+		#grade = Grade.first(:name => "5")
+		@grade_data_array = Array.new
+		@grade_array = Array.new
+		@grade_array.push(grade.name)
+		#Hinzufügen zum Jahrgangsdaten-Array
+		@grade_data_array.push(@grade_array)
+		#Array mit allen Klassen des Jahrgangs
+		@grade_schoolclass_array = Array.new
+		grade_schoolclasses = Schoolclass.all(:grade_id => grade.id)
+		grade_schoolclasses.each do |sc|
+			@grade_schoolclass_array.push(sc.name)
+		end
+		#Hinzufügen zum Jahrgangsdaten-Array
+		@grade_data_array.push(@grade_schoolclass_array)
+		#Array mit allen Schülern der jeweiligen Klasse
+		@schoolclasses_students_array = Array.new
+		grade_schoolclasses.each do |sc|
+			@schoolclasses_students_array.push(get_students_by_schoolclassname(sc.name))
+		end
+		#Hinzufügen zum Jahrgangsdaten-Array
+		@grade_data_array.push(@schoolclasses_students_array)
+		#Alle Jahrgänge werden in einem Array gesammelt
+		@grades_data_array.push(@grade_data_array)
+	end
+	################################
+	
 	erb:list
 end
 

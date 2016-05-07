@@ -74,6 +74,10 @@ th {
 	text-rendering: optimizelegibility;
 }
 
+table {
+		border-spacing: 0px;
+}
+
 td {
 	text-align: center;
 }

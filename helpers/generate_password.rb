@@ -5,10 +5,10 @@
 # numbers (boolean) Sollen Zahlen verwendet werden?
 # special_characters (string) Welche Sonderzeichen sollen verwendet werden?
 
-length = 6
-caps = false
-numbers = true
-special_characters ="!$%&"
+# length = 6
+# caps = false
+# numbers = true
+# special_characters ="!$%&"
 
 
 def generate_passwd(length, caps, numbers, special_characters)  
@@ -23,4 +23,4 @@ def generate_passwd(length, caps, numbers, special_characters)
   Array.new(length) { chars[rand(chars.length)].chr }.join  
 end  
 
-puts generate_passwd(length, caps, numbers, special_characters)
+# puts generate_passwd(length, caps, numbers, special_characters)

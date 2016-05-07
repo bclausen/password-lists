@@ -1,14 +1,29 @@
 <p> Liste </p>
+
+<p></p>
+
 <table>
-	<tr><th>Klasse</th><th>Vorname</th><th>Nachname</th><th>Passwort</th><th>Nutzungsbedingungen</th></tr>
-	<% @students.each do |student| %>
-		<% schoolclass_name = Schoolclass.first(:id => student.schoolclass_id).name %>
-		<tr>
-			<td><%= schoolclass_name %></td>
-			<td><%= student.firstname %></td>
-			<td><%= student.lastname %></td>
-			<td><%= student.password %></td>
-			<td><%= student.wifi_accepting %></td>
-		</tr>
+	<% @grades_data_array.each do |grade| %>
+		<tr><td bgcolor="#CCCCCC" colspan="5"><b>Jahrgang <%= grade[0][0] %></b></td></tr>
+		<tr><th bgcolor="#CCCCCC"></th><th>Vorname</th><th>Nachname</th><th>Passwort</th><th>Nutzungsbedingungen</th></tr>
+		<% grade[1].each do |sc_name| %>
+			<% students_count = grade[2][grade[1].index(sc_name)].length %>
+				  <tr>
+				<td bgcolor="#CCCCCC" rowspan="<%= students_count.to_s %>"><%= sc_name %></td>
+				<% tr = false %>
+			<% grade[2][grade[1].index(sc_name)].each do |student| %>
+				<% if tr then %>
+				  <tr>
+				<% end %>	
+					<td><%= student[0] %></td>
+					<td><%= student[1] %></td>
+					<td><%= student[2] %></td>
+					<td><%= student[3] %></td>
+				  </tr>
+				<% tr = true %>
+			<% end %>
+			<tr><td bgcolor="#CCCCCC"></td><td bgcolor="#CCCCCC"></td><td bgcolor="#CCCCCC"></td><td bgcolor="#CCCCCC"></td><td bgcolor="#CCCCCC"></td></tr>
+		<% end %>
 	<% end %>
+	
 </table>

@@ -1,0 +1,6 @@
+- Reihenfolge der Jahrgänge über Integer-Wert festlegen
+- beim Schülerimport Klassen anlegen
+- Schüler bearbeiten: über die Klasse (alle einer Klasse)
+- Versetzen, auch einzeln
+- Export
+- Druck
